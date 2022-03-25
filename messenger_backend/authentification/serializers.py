@@ -1,6 +1,8 @@
+import imp
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from rest_framework import serializers
 from django.contrib.auth.models import User
+from client.models import Client
 from rest_framework.validators import UniqueValidator
 from django.contrib.auth.password_validation import validate_password
 
@@ -48,5 +50,9 @@ class RegisterSerializer(serializers.ModelSerializer):
         
         user.set_password(validated_data['password'])
         user.save()
+
+        client = Client.objects.create(
+            user=user
+        )
 
         return user
