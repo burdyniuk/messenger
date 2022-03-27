@@ -6,15 +6,27 @@
 - Andrei Petrea
 - Catalin Barus
 
+## Backend To-Do:
+- [x] Login
+- [x] Registration
+- [x] Refresh Token
+- [x] Change password
+- [x] Update profile
+- [ ] Logout
+- [ ] Update profile picture
+- [ ] Change password e-mail
+- [ ] Message tables
+- [ ] Create socket for client connections
+
 ## Backend API:
-- ip/auth/login/
+- ip/auth/login/ - method POST
 	- fields:
 		- username
 		- password
 	- return
 		- access token
 		- refresh token
-- ip/auth/register/
+- ip/auth/register/ - method POST
 	- fields:
                 - username
                 - password
@@ -27,9 +39,38 @@
                 - email
 		- first_name
 		- second_name
-- ip/login/refresh/
+- ip/auth/login/refresh/ - method POST
 	- fields:
 		- refresh (token de refresh primit la login)
 	- return:
 		- access token
 		- refresh token
+- ip/auth/change_password/"id"/ - method PUT
+	- fields:
+		- password
+		- password2
+		- old_password
+	- returnL
+		- nothing if all ok
+		- detail with error
+- ip/auth/update_profile/"id"/ - method PUT
+	- fields:
+		- username
+		- first_name
+		- last_name
+		- email
+	- return:
+		- username
+		- first_name
+		- last_name
+		- email
+- ip/auth/me/ - method GET
+	- needs authentification token
+	- return
+		- id
+		- username
+		- first_name
+		- last_name
+		- last_online
+		- email
+		- profile_picture
