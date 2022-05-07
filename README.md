@@ -86,7 +86,7 @@
 		- last_online
 		- email
 		- profile_picture
-- `ip/chat/` - method Post - (il folositi pentru a crea un chat nou cu nume useri si daca e chat privat puneti privat, altfel e grup)
+- `ip/chat/chat/` - method Post - (il folositi pentru a crea un chat nou cu nume useri si daca e chat privat puneti privat, altfel e grup)
 	- needs authentification token
 ```json
 {
@@ -95,11 +95,11 @@
 	"type": "privat"
 }
 ```
-- `ip/chat/?name=`+nume chat method Get (e pentru search in chat-uri)
+- `ip/chat/chat/?name=`+nume chat method Get (e pentru search in chat-uri)
 	- intoarce chat-urile cu numele dat
-- `ip/chat/?users=`+users_id chat method Get
+- `ip/chat/chat/?users=`+users_id chat method Get
 	- intoarce chat-urile in care e implicat user-ul (sa-l folositi pentru a afla ce chat-uri are userul)
-- `ip/chat/`+id - method PATCH (adauga persoana in chat)
+- `ip/chat/chat/`+id - method PATCH (adauga persoana in chat)
 ```json
 {
 	"users": 4
