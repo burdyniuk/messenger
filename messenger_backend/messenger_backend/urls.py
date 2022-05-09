@@ -22,6 +22,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('auth/', include('authentification.urls')),
     path('chat/', include('chat.urls')),
+    path('auth/password_reset/', include('django_rest_passwordreset.urls', namespace='password_reset')),
 ]+static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 
