@@ -45,6 +45,8 @@ INSTALLED_APPS = [
     'authentification.apps.AuthentificationConfig',
     'client.apps.ClientConfig',
     'chat.apps.ChatConfig',
+    'django_rest_passwordreset',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
@@ -55,7 +57,14 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
 ]
+
+CORS_ALLOWED_ORIGINS = [
+    'http://localhost:3000',
+]
+
 
 ROOT_URLCONF = 'messenger_backend.urls'
 
@@ -135,6 +144,15 @@ SIMPLE_JWT = {
     'SLIDING_TOKEN_REFRESH_LIFETIME': timedelta(days=1),
 }
 
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+DEFAULT_FROM_EMAIL = 'uniall.messenger@gmail.com'
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'uniall.messenger@gmail.com'
+EMAIL_HOST_PASSWORD = 'unipassword'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
 
 REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',

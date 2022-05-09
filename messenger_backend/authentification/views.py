@@ -13,6 +13,27 @@ from rest_framework_simplejwt.views import TokenObtainPairView
 from django.contrib.auth.models import User
 from .serializers import RegisterSerializer
 from rest_framework import generics
+from django.dispatch import receiver
+from django.urls import reverse
+from django_rest_passwordreset.signals import reset_password_token_created
+from django.core.mail import send_mail  
+
+
+@receiver(reset_password_token_created)
+def password_reset_token_created(sender, instance, reset_password_token, *args, **kwargs):
+
+    email_plaintext_message = "Go back to application and use this code = {}".format(reset_password_token.key)
+
+    send_mail(
+        # title:
+        "Password Reset for {title}".format(title="UniAll Messenger"),
+        # message:
+        email_plaintext_message,
+        # from:
+        "noreply@uniall.com",
+        # to:
+        [reset_password_token.user.email]
+    )
 
 
 class MyObtainTokenPairView(TokenObtainPairView):
